@@ -15,7 +15,10 @@ def main():
 
     if len(args) > 0:
         ignore = Ignore()
-        ignore.get_file(args[0], options.destination)
+        if options.destination is not None:
+            ignore.get_file(args[0], options.destination)
+        else:
+            ignore.get_file(args[0])
     else:
         print usage.replace('%prog', 'ignore') + '\n'
 
