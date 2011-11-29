@@ -9,11 +9,20 @@ class Ignore:
         """docstring for __init__"""
         self.source = 'https://raw.github.com/github/gitignore/master/'
 
+    def __should_overwrite(self, file):
+        if os.path.isfile(file):
+            overwrite = raw_input(".gitignore exists, overwrite [y/N]? ")
+            return string.capitalize(overwrite) == 'Y'
+        else:
+            return False
+
     def get_file(self, lang, destination=os.getcwd()):
-        self.source += string.capitalize(lang) + '.gitignore'
-        file_name = '.gitignore'
+        url = self.source + string.capitalize(lang) + '.gitignore'
+        file_name = os.path.join(destination, '.gitignore')
+        if self.__should_overwrite(file_name) is False:
+            return
         try:
-            response = urllib2.urlopen(self.source)
+            response = urllib2.urlopen(url)
         except urllib2.HTTPError, e:
             print '%s: The server could not fulfill the request.' % e.code
         except URLError, e:
