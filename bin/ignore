@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+# encoding: utf-8
+
+import sys
+from optparse import OptionParser
+from ignore import Ignore
+
+def main():
+    usage = "usage: %prog [options] language"
+    parser = OptionParser(usage)
+    parser.add_option("-d", "--dest", action="store", type="string",
+        dest="destination", help="Specify a destination directory", metavar="DIRECTORY")
+
+    (options, args) = parser.parse_args()
+
+    if len(args) > 0:
+        ignore = Ignore()
+        ignore.get_file(args[0], options.destination)
+    else:
+        print usage.replace('%prog', 'ignore') + '\n'
+
+
+if __name__ == '__main__':
+    main()
