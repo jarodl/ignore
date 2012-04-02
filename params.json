@@ -1,0 +1,1 @@
+{"name":"Ignore","body":"### Install\r\n\r\n    pip install ignore\r\n\r\n### Usage\r\n\r\n    > ignore python\r\n    Downloading....\r\n    > ls -a\r\n    .gitignore","tagline":"Quickly grab common .gitignore files from the command line.","google":"","note":"Don't delete this file! It's used internally to help with page regeneration."}
